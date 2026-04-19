@@ -1,24 +1,20 @@
 'use strict';
 
-const gallery = document.querySelector('ul');
+const gallery = document.querySelector('.gallery');
 const preview = document.querySelector('.gallery__large-img');
 
-gallery.addEventListener('click', (e) => {
-  const link = e.target.closest('a');
+if (gallery && preview) {
+  gallery.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
 
-  if (!link) {
-    return;
-  }
-  e.preventDefault();
+    if (!link) {
+      return;
+    }
 
-  const bigSrc = link.getAttribute('href');
+    e.preventDefault();
 
-  preview.setAttribute('src', bigSrc);
+    const bigSrc = link.getAttribute('href');
 
-  const active = document.querySelector('.thumb-active');
-
-  if (active) {
-    active.classList.remove('thumb-active');
-  }
-  link.classList.add('thumb-active');
-});
+    preview.setAttribute('src', bigSrc);
+  });
+}
