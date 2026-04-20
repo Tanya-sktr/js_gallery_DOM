@@ -1,20 +1,21 @@
 'use strict';
 
-const gallery = document.querySelector('.gallery');
-const preview = document.querySelector('.gallery__large-img');
+const largeImg = document.querySelector('#largeImg');
+const galleryList = document.querySelector('.gallery__list');
 
-if (gallery && preview) {
-  gallery.addEventListener('click', (e) => {
-    const link = e.target.closest('a');
+galleryList.addEventListener('click', (e) => {
+  e.preventDefault();
 
-    if (!link) {
-      return;
-    }
+  const targetImg = e.target.closest('img');
+  const targetLink = e.target.closest('a');
 
-    e.preventDefault();
+  if (targetImg) {
+    const bigPhoto = targetImg.parentNode.href;
 
-    const bigSrc = link.getAttribute('href');
+    largeImg.src = bigPhoto;
+  } else if (targetLink) {
+    const bigPhoto = targetLink.href;
 
-    preview.setAttribute('src', bigSrc);
-  });
-}
+    largeImg.src = bigPhoto;
+  }
+});
